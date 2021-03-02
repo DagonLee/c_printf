@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:18:52 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/02 18:29:52 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:37:11 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int		ft_format_process(va_list ap, char *format)
 			i = ft_flag_process(ap, format, &flags, ++i);
 			if (ft_strchr(TYPE, format[i]))
 				cnt += ft_type_process(ap, flags);
+				i++;
 		}
-		i++;
 	}
 	return (cnt);
 }
