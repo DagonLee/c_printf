@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:18:52 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/02 19:37:11 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:42:16 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		ft_printf(const char *format, ...)
 	va_list		ap;
 
 	va_start(ap, format);
-	cnt = format_process(ap, (char *)format);
+	cnt = ft_format_process(ap, (char *)format);
 	va_end(ap);
 	return (cnt);
 }
