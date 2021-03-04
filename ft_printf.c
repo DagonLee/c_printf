@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:18:52 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/02 19:42:16 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/04 10:52:03 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ t_flags	ft_init_flags(void)
 	flags.width = 0;
 	flags.prec = -1;
 	flags.type = 0;
+	flags.ast = 0;
 	return (flags);
 }
 
 int		ft_flag_process(va_list ap, const char *format, t_flags *flags, int i)
 {
-	while (save[i])
+	while (format[i])
 	{
 		if (format[i] == '-')
 			*flags = ft_minus_flag(*flags);
@@ -35,7 +36,7 @@ int		ft_flag_process(va_list ap, const char *format, t_flags *flags, int i)
 		if (format[i] == '*')
 			*flags = ft_width_flag(ap, *flags);
 		if (format[i] == '.')
-			i = ft_pre_flag(ap, flags, format, i);
+			i = ft_prec_flag(ap, flags, format, i);
 		if (ft_isdigit(format[i]))
 			*flags = ft_digit_flag(format[i], *flags);
 		if (ft_strchr(TYPE, format[i]))
@@ -60,7 +61,7 @@ int		ft_format_process(va_list ap, char *format)
 	{
 		while (format[i] != '%' && format[i])
 			cnt += ft_putchar(format[i++]);
-		if (foramt[i] == '%' && format[i + 1])
+		if (format[i] == '%' && format[i + 1])
 		{
 			flags = ft_init_flags();
 			i = ft_flag_process(ap, format, &flags, ++i);
