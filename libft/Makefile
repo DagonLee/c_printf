@@ -6,7 +6,7 @@
 #    By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/12 17:09:29 by da-lee            #+#    #+#              #
-#    Updated: 2021/03/04 11:46:47 by da-lee           ###   ########.fr        #
+#    Updated: 2021/03/05 12:27:19 by da-lee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ AR				=		ar rcs
 
 SRCS			=		ft_isascii.c ft_strlen.c ft_toupper.c \
 						ft_isalpha.c ft_isdigit.c ft_isprint.c ft_tolower.c ft_isalnum.c \
-						ft_putnbr_fd.c ft_putendl_fd.c\
+						ft_putnbr_fd.c ft_putendl_fd.c ft_putstr.c\
 						ft_putstr_fd.c ft_putchar_fd.c ft_strmapi.c ft_split.c ft_putchar.c\
 						ft_strtrim.c ft_strjoin.c ft_itoa.c ft_substr.c ft_strdup.c \
 						ft_calloc.c ft_memcmp.c ft_memchr.c ft_memmove.c ft_memccpy.c \

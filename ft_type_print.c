@@ -6,13 +6,13 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:13:56 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/04 11:07:50 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:39:10 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_type_process(va_list ap, t_flags flags)
+int	ft_type_process(va_list ap, t_flags flags)
 {
 	char c = flags.type;
 	int cnt;
@@ -20,8 +20,8 @@ int		ft_type_process(va_list ap, t_flags flags)
 	cnt = 0;
 	if (c == 'c')
 		cnt = ft_print_char(va_arg(ap, int), flags);
-//	else if (c == 's')
-//		cnt = ft_print_str(va_arg(args, char *), flags);
+	else if (c == 's')
+		cnt = ft_print_str(va_arg(ap, char *), flags);
 //	else if (c == 'p')
 //		char_count = ft_print_ptr(va_arg(args, unsigned long long), flags);
 //	else if (c == 'd' || c == 'i')
@@ -33,7 +33,7 @@ int		ft_type_process(va_list ap, t_flags flags)
 //		cnt += ft_print_hexa(va_arg(args, unsigned int), 1, flags);
 //	else if (c == 'X')
 //		cnt += ft_print_hexa(va_arg(args, unsigned int), 0, flags);
-//	else if (c == '%')
-//		cnt += ft_print_percent(flags);
+	else if (c == '%')
+		cnt += ft_print_percent(flags);
 	return (cnt);
 }

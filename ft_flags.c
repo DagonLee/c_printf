@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:07:07 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/04 10:37:30 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/04 13:07:49 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ t_flags		ft_digit_flag(char c, t_flags flags)
 	return (flags);
 }
 
-int			ft_prec_flag(va_list ap, t_flags *flags, const char *format, int start)
+int			ft_prec_flag(va_list ap, t_flags *flags, const char *format, int s)
 {
 	int i;
 
-	i = start;
-	i++;
+	i = s + 1;
 	if (format[i] == '*')
 	{
 		flags->prec = va_arg(ap, int);

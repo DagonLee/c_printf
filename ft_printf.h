@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:34:21 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/04 11:29:41 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/05 13:43:18 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ typedef struct	s_flags
 int		ft_flag_process(va_list ap, const char *format, t_flags *flags, int i);
 int		ft_format_process(va_list ap, char *format);
 int		ft_printf(const char *format, ...);
-int			ft_prec_flag(va_list ap, t_flags *flags, const char *format, int start);
+int			ft_prec_flag(va_list ap, t_flags *flags, const char *format, int s);
 t_flags		ft_digit_flag(char c, t_flags flags);
 t_flags		ft_width_flag(va_list ap, t_flags flags);
 t_flags		ft_minus_flag(t_flags flags);
 int		ft_type_process(va_list ap, t_flags flags);
 int		ft_print_width(int width, int minus, int zero);
 int		ft_print_char(char c, t_flags flags);
+int		ft_print_str(char *str, t_flags flags);
+int		ft_print_percent(t_flags flags);
 #endif

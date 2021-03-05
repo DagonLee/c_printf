@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 11:28:12 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/04 10:50:47 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/05 12:26:49 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 int					ft_isascii(int c);
 int					ft_strlen(const char *str);
 int					ft_putchar(char c);
+int					ft_putstr(char *str, int n);
 int					ft_toupper(int c);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
