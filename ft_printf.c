@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:18:52 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/08 14:48:01 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/08 21:40:21 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_format_process(va_list ap, char *format)
 		{
 			flags = ft_init_flags();
 			i = ft_flag_process(ap, format, &flags, ++i);
-			if ((flags.minus == 1 || flags.prec > - 1) && flags.type != '%')
+			if ((flags.minus == 1 || flags.prec > -1) && flags.type != '%')
 				flags.zero = 0;
 			if (ft_strchr(TYPE, format[i]))
 				cnt += ft_type_process(ap, flags);

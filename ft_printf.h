@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:34:21 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/08 13:53:46 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/08 21:40:43 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int				ft_print_width(int width, int minus, int zero);
 int				ft_print_char(char c, t_flags flags);
 int				ft_print_str(char *str, t_flags flags);
 int				ft_print_percent(t_flags flags);
+int				ft_print_ptr(unsigned long long ull, t_flags flags);
 #endif
