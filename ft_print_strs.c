@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:10:28 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/05 13:41:13 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:16:31 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ int		ft_print_width(int width, int minus, int zero)
 
 int		ft_print_char(char c, t_flags flags)
 {
-	int cnt;
+	int		ret;
 
-	cnt = 0;
+	ret = 0;
+	if (flags.type == '%' && flags.minus == 1)
+		flags.zero = 0;	
 	if (flags.minus == 1)
-		ft_putchar(c);
-	cnt = ft_print_width(flags.width, 1, 0);
+		ret += ft_putchar(c);
+	ret += ft_print_width(flags.width, 1, flags.zero);
 	if (flags.minus == 0)
-		ft_putchar(c);
-	return (cnt + 1);
+		ret += ft_putchar(c);
+	return (ret);
 }
 
 int		ft_print_str_part(char *str, t_flags flags)
@@ -64,7 +66,7 @@ int		ft_print_str(char *str, t_flags flags)
 
 	cnt = 0;
 	if (!str)
-		str = "(null)"; 
+		str = "(null)";
 	if (flags.prec >= 0 && flags.prec > ft_strlen(str))
 		flags.prec = ft_strlen(str);
 	if (flags.minus == 1)
@@ -77,6 +79,7 @@ int		ft_print_str(char *str, t_flags flags)
 		cnt += ft_print_str_part(str, flags);
 	return (cnt);
 }
+
 int		ft_print_percent(t_flags flags)
 {
 	int cnt;

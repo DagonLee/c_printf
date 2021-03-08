@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:13:56 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/05 13:39:10 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:54:00 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_type_process(va_list ap, t_flags flags)
 	else if (c == 's')
 		cnt = ft_print_str(va_arg(ap, char *), flags);
 //	else if (c == 'p')
-//		char_count = ft_print_ptr(va_arg(args, unsigned long long), flags);
+//		cnt = ft_print_ptr(va_arg(ap, unsigned long long), flags);
 //	else if (c == 'd' || c == 'i')
 //		cnt = ft_print_int(va_arg(args, int), flags);
 //	else if (c == 'u')

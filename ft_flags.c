@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:07:07 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/04 13:07:49 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/08 14:53:19 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_flags		ft_width_flag(va_list ap, t_flags flags)
 	if (flags.width < 0)
 	{
 		flags.minus = 1;
+		flags.zero = 0;
 		flags.width *= -1;
 	}
 	return (flags);
