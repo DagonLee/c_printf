@@ -6,13 +6,13 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:29:12 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:26:14 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:47:26 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_u_itoa(uintmax_t value)
+char			*ft_u_itoa(uintmax_t value)
 {
 	int			len;
 	uintmax_t	v;
@@ -36,18 +36,18 @@ char	*ft_u_itoa(uintmax_t value)
 	return (result);
 }
 
-static int	ft_in_put_part_uint(char *unsi_int, t_flags flags)
+static int		ft_in_put_part_uint(char *unsi_int, t_flags flags)
 {
-	int char_count;
+	int cnt;
 
-	char_count = 0;
+	cnt = 0;
 	if (flags.prec >= 0)
-		char_count += ft_print_width(flags.prec - 1, ft_strlen(unsi_int) - 1, 1);
-	char_count += ft_putstr(unsi_int, ft_strlen(unsi_int));
-	return (char_count);
+		cnt += ft_print_width(flags.prec - 1, ft_strlen(unsi_int) - 1, 1);
+	cnt += ft_putstr(unsi_int, ft_strlen(unsi_int));
+	return (cnt);
 }
 
-static int	ft_put_part_uint(char *unsi_int, t_flags flags)
+static int		ft_put_part_uint(char *unsi_int, t_flags flags)
 {
 	int char_count;
 
@@ -69,11 +69,11 @@ static int	ft_put_part_uint(char *unsi_int, t_flags flags)
 	return (char_count);
 }
 
-int		ft_print_uint(unsigned int n, t_flags flags)
+int				ft_print_uint(unsigned int n, t_flags flags)
 {
-	uintmax_t num;
-	char *uint_str;
-	int cnt;
+	uintmax_t	num;
+	char		*uint_str;
+	int			cnt;
 
 	num = n;
 	cnt = 0;

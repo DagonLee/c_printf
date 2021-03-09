@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:13:56 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:15:16 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:43:16 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	ft_type_process(va_list ap, t_flags flags)
 {
-	char c = flags.type;
-	int cnt;
+	int		cnt;
+	char	c;
 
+	c = flags.type;
 	cnt = 0;
 	if (c == 'c')
 		cnt = ft_print_char(va_arg(ap, int), flags);

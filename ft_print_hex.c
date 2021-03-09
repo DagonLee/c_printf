@@ -6,13 +6,13 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 13:26:33 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 13:45:42 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:43:53 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_str_toupper(char *str)
+char			*ft_str_toupper(char *str)
 {
 	int i;
 

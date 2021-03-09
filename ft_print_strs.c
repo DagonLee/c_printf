@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 13:10:28 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/08 14:16:31 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:45:18 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_print_char(char c, t_flags flags)
 
 	ret = 0;
 	if (flags.type == '%' && flags.minus == 1)
-		flags.zero = 0;	
+		flags.zero = 0;
 	if (flags.minus == 1)
 		ret += ft_putchar(c);
 	ret += ft_print_width(flags.width, 1, flags.zero);
