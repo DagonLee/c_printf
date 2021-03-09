@@ -6,18 +6,18 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:29:12 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:47:26 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 16:03:45 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char			*ft_u_itoa(uintmax_t value)
+char			*ft_u_itoa(unsigned int value)
 {
-	int			len;
-	uintmax_t	v;
-	char		*radix;
-	char		*result;
+	int				len;
+	unsigned int	v;
+	char			*radix;
+	char			*result;
 
 	len = 1;
 	v = value;
@@ -82,7 +82,7 @@ int				ft_print_uint(unsigned int n, t_flags flags)
 		cnt += ft_print_width(flags.width, 0, 0);
 		return (cnt);
 	}
-	uint_str = ft_u_itoa(num);
+	uint_str = ft_u_itoa(n);
 	cnt += ft_put_part_uint(uint_str, flags);
 	free(uint_str);
 	return (cnt);
