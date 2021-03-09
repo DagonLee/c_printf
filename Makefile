@@ -6,7 +6,7 @@
 #    By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/02 19:47:49 by da-lee            #+#    #+#              #
-#    Updated: 2021/03/08 15:10:57 by da-lee           ###   ########.fr        #
+#    Updated: 2021/03/09 13:34:39 by da-lee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME		= libftprintf.a
 LIBFT		= libft
 LIBFT_LIB	= libft.a
 
-SRCS		= ./ft_printf.c ./ft_flags.c ./ft_type_print.c\
-			  ./ft_print_strs.c ./ft_print_ptr.c
+SRCS		= ./ft_printf.c ./ft_flags.c ./ft_type_print.c \
+			  ./ft_print_strs.c ./ft_print_ptr.c ./ft_print_nbr.c \
+			  ./ft_print_hex.c
 OBJS		= $(SRCS:.c=.o)
 INCS		= .
 RM			= rm -f
