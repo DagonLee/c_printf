@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:34:21 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 13:34:59 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:21:10 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ int				ft_print_ptr(unsigned long long ull, t_flags flags);
 int				ft_print_int(int i, t_flags flags);
 char			*ft_ull_base(unsigned long long ull, int base);
 int				ft_print_hex(unsigned int ui, int lower, t_flags flags);
+int				ft_print_uint(unsigned int n, t_flags flags);
 #endif

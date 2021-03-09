@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:13:56 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 13:35:25 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:15:16 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ int	ft_type_process(va_list ap, t_flags flags)
 		cnt = ft_print_ptr(va_arg(ap, unsigned long long), flags);
 	else if (c == 'd' || c == 'i')
 		cnt = ft_print_int(va_arg(ap, int), flags);
-//	else if (c == 'u')
-//		cnt += ft_print_uint((unsigned int)va_arg(args, unsigned int),
-//		flags);
+	else if (c == 'u')
+		cnt += ft_print_uint((unsigned int)va_arg(ap, unsigned int), flags);
 	else if (c == 'x')
 		cnt += ft_print_hex(va_arg(ap, unsigned int), 1, flags);
 	else if (c == 'X')
