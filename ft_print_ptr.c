@@ -6,67 +6,67 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:30:50 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/08 21:31:48 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:19:32 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*treat_base(unsigned long long ull_save, int base,
-char *rtn, int count)
+static char	*insert_hex(unsigned long long save,
+char *ret, int cnt)
 {
-	while (ull_save != 0)
+	while (save != 0)
 	{
-		if ((ull_save % base) < 10)
-			rtn[count - 1] = (ull_save % base) + 48;
+		if ((save % 16) < 10)
+			ret[cnt - 1] = (save % 16) + 48;
 		else
-			rtn[count - 1] = (ull_save % base) + 87;
-		ull_save /= base;
-		count--;
+			ret[cnt - 1] = (save % 16) + 87;
+		save /= 16;
+		cnt--;
 	}
-	return (rtn);
+	return (ret);
 }
 
-char		*ft_ull_base(unsigned long long ull, int base)
+char		*ft_dec_to_hex(unsigned long long ull)
 {
-	char				*rtn;
-	unsigned long long	ull_save;
-	int					count;
+	char				*ret;
+	unsigned long long	save;
+	int					cnt;
 
-	rtn = 0;
-	count = 0;
-	ull_save = ull;
+	ret = 0;
+	cnt = 0;
+	save = ull;
 	if (ull == 0)
 		return (ft_strdup("0"));
 	while (ull != 0)
 	{
-		ull /= base;
-		count++;
+		ull /= 16;
+		cnt++;
 	}
-	if (!(rtn = malloc(sizeof(char) * (count + 1))))
+	if (!(ret = malloc(sizeof(char) * (cnt + 1))))
 		return (0);
-	rtn[count] = '\0';
-	rtn = treat_base(ull_save, base, rtn, count);
-	return (rtn);
+	ret[cnt] = '\0';
+	ret = insert_hex(save, ret, cnt);
+	return (ret);
 }
 
-int			ft_in_put_part_pointer(char *pointer, t_flags flags)
+int			ft_print_ptr_part(char *ptr, t_flags flags)
 {
-	int char_count;
+	int cnt;
 
-	char_count = 0;
-	char_count += ft_putstr("0x", 2);
+	cnt = 0;
+	cnt += ft_putstr("0x", 2);
 	if (flags.prec >= 0)
 	{
-		char_count += ft_print_width(flags.prec, ft_strlen(pointer), 0);
-		char_count += ft_putstr(pointer, flags.prec);
+		cnt += ft_print_width(flags.prec, ft_strlen(ptr), 0);
+		cnt += ft_putstr(ptr, flags.prec);
 	}
 	else
-		char_count += ft_putstr(pointer, ft_strlen(pointer));
-	return (char_count);
+		cnt += ft_putstr(ptr, ft_strlen(ptr));
+	return (cnt);
 }
 
-int			ft_print_null(t_flags flags)
+int			ft_print_none(t_flags flags)
 {
 	int cnt;
 
@@ -83,25 +83,25 @@ int			ft_print_null(t_flags flags)
 	}
 }
 
-int			ft_print_ptr(unsigned long long ull, t_flags flags)
+int			ft_print_ptr(unsigned long long value, t_flags flags)
 {
 	char	*ptr;
 	int		cnt;
 
 	cnt = 0;
-	if (ull == 0 && flags.prec == 0)
+	if (value == 0 && flags.prec == 0)
 	{
-		cnt += ft_print_null(flags);
+		cnt += ft_print_none(flags);
 		return (cnt);
 	}
-	ptr = ft_ull_base(ull, 16);
+	ptr = ft_dec_to_hex(value);
 	if (flags.prec < ft_strlen(ptr))
 		flags.prec = ft_strlen(ptr);
 	if (flags.minus == 1)
-		cnt += ft_in_put_part_pointer(ptr, flags);
+		cnt += ft_print_ptr_part(ptr, flags);
 	cnt += ft_print_width(flags.width, ft_strlen(ptr) + 2, 0);
 	if (flags.minus == 0)
-		cnt += ft_in_put_part_pointer(ptr, flags);
+		cnt += ft_print_ptr_part(ptr, flags);
 	free(ptr);
 	return (cnt);
 }

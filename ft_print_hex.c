@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 13:26:33 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:43:53 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:07:39 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int				ft_print_hex(unsigned int ui, int lower, t_flags flags)
 		cnt += ft_print_width(flags.width, 0, 0);
 		return (cnt);
 	}
-	hexa = ft_ull_base((unsigned long long)ui, 16);
+	hexa = ft_dec_to_hex(ui);
 	if (lower == 0)
 		hexa = ft_str_toupper(hexa);
 	cnt += ft_put_part_hexa(hexa, flags);
