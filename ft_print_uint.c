@@ -6,13 +6,13 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:29:12 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 16:03:45 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/11 18:00:55 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char			*ft_u_itoa(unsigned int value)
+char			*ft_uitoa(unsigned int value)
 {
 	int				len;
 	unsigned int	v;
@@ -36,54 +36,46 @@ char			*ft_u_itoa(unsigned int value)
 	return (result);
 }
 
-static int		ft_in_put_part_uint(char *unsi_int, t_flags flags)
+int				ft_print_uint_part(t_flags flags, char *str_uint)
+{
+	int cnt;
+
+	cnt = 0;
+	cnt += ft_print_width(flags.prec, ft_strlen(str_uint), 1);
+	cnt += ft_putstr(str_uint, ft_strlen(str_uint));
+	return (cnt);
+}
+	
+int				ft_print_uint_order(t_flags flags, char *str_uint)
 {
 	int cnt;
 
 	cnt = 0;
 	if (flags.prec >= 0)
-		cnt += ft_print_width(flags.prec - 1, ft_strlen(unsi_int) - 1, 1);
-	cnt += ft_putstr(unsi_int, ft_strlen(unsi_int));
+		flags.zero = 0;
+	if (flags.prec < ft_strlen(str_uint))
+		flags.prec = ft_strlen(str_uint);
+	if (flags.minus == 1)
+		cnt += ft_print_uint_part(flags, str_uint);
+	cnt += ft_print_width(flags.width, flags.prec, flags.zero);
+	if (flags.minus == 0)
+		cnt += ft_print_uint_part(flags, str_uint);
 	return (cnt);
 }
 
-static int		ft_put_part_uint(char *unsi_int, t_flags flags)
+int				ft_print_uint(unsigned int value, t_flags flags)
 {
-	int char_count;
+	char			*str_uint;
+	int				cnt;
 
-	char_count = 0;
-	if (flags.minus == 1)
-		char_count += ft_in_put_part_uint(unsi_int, flags);
-	if (flags.prec >= 0 && flags.prec < ft_strlen(unsi_int))
-		flags.prec = ft_strlen(unsi_int);
-	if (flags.prec >= 0)
-	{
-		flags.width -= flags.prec;
-		char_count += ft_print_width(flags.width, 0, 0);
-	}
-	else
-		char_count += ft_print_width(flags.width,
-		ft_strlen(unsi_int), flags.zero);
-	if (flags.minus == 0)
-		char_count += ft_in_put_part_uint(unsi_int, flags);
-	return (char_count);
-}
-
-int				ft_print_uint(unsigned int n, t_flags flags)
-{
-	uintmax_t	num;
-	char		*uint_str;
-	int			cnt;
-
-	num = n;
 	cnt = 0;
-	if (flags.prec == 0 && num == 0)
+	if (flags.prec == 0 && value == 0)
 	{
 		cnt += ft_print_width(flags.width, 0, 0);
 		return (cnt);
 	}
-	uint_str = ft_u_itoa(n);
-	cnt += ft_put_part_uint(uint_str, flags);
-	free(uint_str);
+	str_uint = ft_uitoa(value);
+	cnt += ft_print_uint_order(flags, str_uint);
+	free(str_uint);
 	return (cnt);
 }

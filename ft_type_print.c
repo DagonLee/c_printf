@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 19:13:56 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 15:43:16 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/11 16:41:21 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_type_process(va_list ap, t_flags flags)
 	else if (c == 'u')
 		cnt += ft_print_uint((unsigned int)va_arg(ap, unsigned int), flags);
 	else if (c == 'x')
-		cnt += ft_print_hex(va_arg(ap, unsigned int), 1, flags);
-	else if (c == 'X')
 		cnt += ft_print_hex(va_arg(ap, unsigned int), 0, flags);
+	else if (c == 'X')
+		cnt += ft_print_hex(va_arg(ap, unsigned int), 1, flags);
 	else if (c == '%')
 		cnt += ft_print_percent(flags);
 	return (cnt);
