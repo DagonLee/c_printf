@@ -6,70 +6,95 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:30:13 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/09 14:30:18 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/11 16:21:43 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_in_put_part_int(char *d_i, int save_i, t_flags flags)
+int			ft_print_int_part(char *str, t_flags flags)
 {
-	int char_count;
+	int cnt;
 
-	char_count = 0;
-	if (save_i < 0 && flags.prec >= 0)
-		ft_putchar('-');
-	if (flags.prec >= 0)
-		char_count += ft_print_width(flags.prec - 1, ft_strlen(d_i) - 1, 1);
-	char_count += ft_putstr(d_i, ft_strlen(d_i));
-	return (char_count);
-}
-
-static int	ft_put_part_int(char *d_i, int save_i, t_flags flags)
-{
-	int char_count;
-
-	char_count = 0;
-	if (flags.minus == 1)
-		char_count += ft_in_put_part_int(d_i, save_i, flags);
-	if (flags.prec >= 0 && flags.prec < ft_strlen(d_i))
-		flags.prec = ft_strlen(d_i);
-	if (flags.prec >= 0)
-	{
-		flags.width -= flags.prec;
-		char_count += ft_print_width(flags.width, 0, 0);
-	}
-	else
-		char_count += ft_print_width(flags.width, ft_strlen(d_i), flags.zero);
-	if (flags.minus == 0)
-		char_count += ft_in_put_part_int(d_i, save_i, flags);
-	return (char_count);
-}
-
-int			ft_print_int(int i, t_flags flags)
-{
-	char	*d_i;
-	int		save;
-	int		cnt;
-
-	save = i;
 	cnt = 0;
-	if (flags.prec == 0 && i == 0)
+	cnt += ft_print_width(flags.prec, ft_strlen(str), 1);
+	cnt += ft_putstr(str, ft_strlen(str));
+	return (cnt);
+}
+
+int			ft_print_int_order_min(t_flags flags, char *str, int zero_check)
+{
+	int cnt;
+
+	cnt = 0;
+	if (flags.minus == 1)
+	{
+		cnt += ft_putchar('-');
+		cnt += ft_print_int_part(str, flags);
+	}
+	if (flags.zero == 1)
+	{
+		cnt += ft_putchar('-');
+		zero_check = 1;
+	}
+	cnt += ft_print_width(flags.width, flags.prec + 1, flags.zero);
+	if (flags.minus == 0)
+	{
+		if (zero_check == 0)
+			cnt += ft_putchar('-');
+		cnt += ft_print_int_part(str, flags);
+	}
+	return (cnt);
+}
+
+int			ft_print_int_order(char *str, int v_min, t_flags flags)
+{
+	int		cnt;
+	int		zero_check;
+
+	zero_check = 0;
+	cnt = 0;
+	if (flags.prec >= 0)
+		flags.zero = 0;
+	if (flags.prec < ft_strlen(str))
+		flags.prec = ft_strlen(str);
+	if (v_min == 1)
+		cnt += ft_print_int_order_min(flags, str, zero_check);
+	else
+	{
+		if (flags.minus == 1)
+			cnt += ft_print_int_part(str, flags);
+		cnt += ft_print_width(flags.width, flags.prec, flags.zero);
+		if (flags.minus == 0)
+			cnt += ft_print_int_part(str, flags);
+	}
+	return (cnt);
+}
+
+int			ft_print_int(int value, t_flags flags)
+{
+	char		*str;
+	int			save;
+	long long	v;
+	int			cnt;
+	int			v_min;
+
+	v_min = 0;
+	v = value;
+	save = value;
+	cnt = 0;
+	if (flags.prec == 0 && value == 0)
 	{
 		cnt += ft_print_width(flags.width, 0, 0);
 		return (cnt);
 	}
-	if (i < 0 && (flags.prec >= 0 || flags.zero == 1))
+	if (value < 0)
 	{
-		if (flags.zero == 1 && flags.prec <= -1)
-			ft_putstr("-", 1);
-		i *= -1;
-		flags.zero = 1;
-		flags.width--;
-		cnt++;
+		v_min = 1;
+		v *= -1;
 	}
-	d_i = ft_itoa(i);
-	cnt += ft_put_part_int(d_i, save, flags);
-	free(d_i);
+	str = ft_lltoa(v);
+	cnt = ft_print_int_order(str, v_min, flags);
+	free(str);
 	return (cnt);
 }

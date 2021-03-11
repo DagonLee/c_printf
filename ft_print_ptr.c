@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 21:30:50 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/10 11:19:32 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:52:12 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char *ret, int cnt)
 	return (ret);
 }
 
-char		*ft_dec_to_hex(unsigned long long ull)
+char		*ft_dec_to_hex(unsigned long long value)
 {
 	char				*ret;
 	unsigned long long	save;
@@ -35,12 +35,12 @@ char		*ft_dec_to_hex(unsigned long long ull)
 
 	ret = 0;
 	cnt = 0;
-	save = ull;
-	if (ull == 0)
+	save = value;
+	if (value == 0)
 		return (ft_strdup("0"));
-	while (ull != 0)
+	while (value != 0)
 	{
-		ull /= 16;
+		value /= 16;
 		cnt++;
 	}
 	if (!(ret = malloc(sizeof(char) * (cnt + 1))))
@@ -56,13 +56,10 @@ int			ft_print_ptr_part(char *ptr, t_flags flags)
 
 	cnt = 0;
 	cnt += ft_putstr("0x", 2);
-	if (flags.prec >= 0)
-	{
-		cnt += ft_print_width(flags.prec, ft_strlen(ptr), 0);
-		cnt += ft_putstr(ptr, flags.prec);
-	}
-	else
-		cnt += ft_putstr(ptr, ft_strlen(ptr));
+	if (flags.prec < ft_strlen(ptr))
+		flags.prec = ft_strlen(ptr);
+	cnt += ft_print_width(flags.prec, ft_strlen(ptr), 1);
+	cnt += ft_putstr(ptr, flags.prec);
 	return (cnt);
 }
 
@@ -95,8 +92,6 @@ int			ft_print_ptr(unsigned long long value, t_flags flags)
 		return (cnt);
 	}
 	ptr = ft_dec_to_hex(value);
-	if (flags.prec < ft_strlen(ptr))
-		flags.prec = ft_strlen(ptr);
 	if (flags.minus == 1)
 		cnt += ft_print_ptr_part(ptr, flags);
 	cnt += ft_print_width(flags.width, ft_strlen(ptr) + 2, 0);

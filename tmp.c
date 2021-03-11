@@ -1,7 +1,5 @@
 #include <stdio.h>
 
 int main(){
-	char *s ;
-
-	printf("%.-1p", 0);
+	printf("%010.d",-1234);
 }
