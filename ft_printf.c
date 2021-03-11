@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:18:52 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/10 13:13:05 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/11 20:31:53 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int		ft_flag_process(va_list ap, const char *format, t_flags *flags, int i)
 {
 	while (format[i])
 	{
+		if (!ft_strchr(TYPE, format[i]))
+		{
+			if (!ft_strchr("0.*-", format[i]) && !ft_isdigit(format[i]))
+				break ;
+		}
 		if (format[i] == '-')
 			*flags = ft_minus_flag(*flags);
 		if (format[i] == '0' && flags->width == 0 && flags->minus == 0)
