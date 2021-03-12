@@ -6,7 +6,7 @@
 /*   By: da-lee <da-lee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:29:12 by da-lee            #+#    #+#             */
-/*   Updated: 2021/03/11 18:00:55 by da-lee           ###   ########.fr       */
+/*   Updated: 2021/03/12 11:39:12 by da-lee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_print_uint_part(t_flags flags, char *str_uint)
 	cnt += ft_putstr(str_uint, ft_strlen(str_uint));
 	return (cnt);
 }
-	
+
 int				ft_print_uint_order(t_flags flags, char *str_uint)
 {
 	int cnt;
